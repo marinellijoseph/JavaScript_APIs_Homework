@@ -17,94 +17,102 @@ app = Flask(__name__)
 #################################################
 
 from flask_sqlalchemy import SQLAlchemy
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///belly_button_biodiversity.sqlite"
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////belly_button_biodiversity.sqlite"
 
 db = SQLAlchemy(app)
 
-@app.route("/")
+#################################################
+# Routes
+#################################################
 
-    """Return the dashboard homepage."""
+@app.route("/")
+def home():
+    return render_template("index.html")
+#    """Return the dashboard homepage."""
 
 @app.route('/names')
-    """List of sample names.
+def sample_names():
+    return 
 
-    Returns a list of sample names in the format
-    [
-        "BB_940",
-        "BB_941",
-        "BB_943",
-        "BB_944",
-        "BB_945",
-        "BB_946",
-        "BB_947",
-        ...
-    ]
+#     """List of sample names. 
 
-    """
+#     Returns a list of sample names in the format
+#     [
+#         "BB_940",
+#         "BB_941",
+#         "BB_943",
+#         "BB_944",
+#         "BB_945",
+#         "BB_946",
+#         "BB_947",
+#         ...
+#     ]
 
-@app.route('/otu')
-    """List of OTU descriptions.
+#     """
 
-    Returns a list of OTU descriptions in the following format
+# @app.route('/otu')
+#     """List of OTU descriptions.
 
-    [
-        "Archaea;Euryarchaeota;Halobacteria;Halobacteriales;Halobacteriaceae;Halococcus",
-        "Archaea;Euryarchaeota;Halobacteria;Halobacteriales;Halobacteriaceae;Halococcus",
-        "Bacteria",
-        "Bacteria",
-        "Bacteria",
-        ...
-    ]
-    """
+#     Returns a list of OTU descriptions in the following format
 
-@app.route('/metadata/<sample>')
-    """MetaData for a given sample.
+#     [
+#         "Archaea;Euryarchaeota;Halobacteria;Halobacteriales;Halobacteriaceae;Halococcus",
+#         "Archaea;Euryarchaeota;Halobacteria;Halobacteriales;Halobacteriaceae;Halococcus",
+#         "Bacteria",
+#         "Bacteria",
+#         "Bacteria",
+#         ...
+#     ]
+#     """
 
-    Args: Sample in the format: `BB_940`
+# @app.route('/metadata/<sample>')
+#     """MetaData for a given sample.
 
-    Returns a json dictionary of sample metadata in the format
+#     Args: Sample in the format: `BB_940`
 
-    {
-        AGE: 24,
-        BBTYPE: "I",
-        ETHNICITY: "Caucasian",
-        GENDER: "F",
-        LOCATION: "Beaufort/NC",
-        SAMPLEID: 940
-    }
-    """
+#     Returns a json dictionary of sample metadata in the format
 
-@app.route('/wfreq/<sample>')
-    """Weekly Washing Frequency as a number.
+#     {
+#         AGE: 24,
+#         BBTYPE: "I",
+#         ETHNICITY: "Caucasian",
+#         GENDER: "F",
+#         LOCATION: "Beaufort/NC",
+#         SAMPLEID: 940
+#     }
+#     """
 
-    Args: Sample in the format: `BB_940`
+# @app.route('/wfreq/<sample>')
+#     """Weekly Washing Frequency as a number.
 
-    Returns an integer value for the weekly washing frequency `WFREQ`
-    """
+#     Args: Sample in the format: `BB_940`
 
-@app.route('/samples/<sample>')
-    """OTU IDs and Sample Values for a given sample.
+#     Returns an integer value for the weekly washing frequency `WFREQ`
+#     """
 
-    Sort your Pandas DataFrame (OTU ID and Sample Value)
-    in Descending Order by Sample Value
+# @app.route('/samples/<sample>')
+#     """OTU IDs and Sample Values for a given sample.
 
-    Return a list of dictionaries containing sorted lists  for `otu_ids`
-    and `sample_values`
+#     Sort your Pandas DataFrame (OTU ID and Sample Value)
+#     in Descending Order by Sample Value
 
-    [
-        {
-            otu_ids: [
-                1166,
-                2858,
-                481,
-                ...
-            ],
-            sample_values: [
-                163,
-                126,
-                113,
-                ...
-            ]
-        }
-    ]
-    """
+#     Return a list of dictionaries containing sorted lists  for `otu_ids`
+#     and `sample_values`
+
+#     [
+#         {
+#             otu_ids: [
+#                 1166,
+#                 2858,
+#                 481,
+#                 ...
+#             ],
+#             sample_values: [
+#                 163,
+#                 126,
+#                 113,
+#                 ...
+#             ]
+#         }
+#     ]
+#     """
